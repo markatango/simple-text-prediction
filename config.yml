@@ -1,0 +1,20 @@
+directories:
+   dirOrigName: "./data/final/en_US"
+   dirCleanName: "./data/final/en_US_clean"
+   dirSampName: "./data/final/en_US_sample"
+   dirTempName: "./data/final/en_US_temp"
+
+switches: 
+   DEBUGMODE: false
+   STARTUP: false          # get data, either from the clean data dir or from the original texts per READDATA flag
+   READDATA: true     # true: data is already in environment; false: read original data
+   SAMPLEDATA: false    # Create a subset of the data that has been made available
+   MAKENGRAMS: false
+
+params: # Generate the n-grams and source additional functions used by the server
+   RPTLEN: 5
+   GRAPHLEN: 10           # number of candidate 'next word' to display in the probability bargraph
+   NMAX: 4
+   FILTERTHRESHOLD: 1      # terms that appear less times than this value are not included
+   FILESAMPLEFRACTION:   0.2
+   TESTSUBSAMPLESIZE: 1000

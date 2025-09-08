@@ -7,7 +7,15 @@ if (SAMPLEDATA){
     texts[[i]][sample(1:nTexts[i], SAMPLESIZE * nTexts[i])]
   })
   
-  removeFiles(dirSampName)
+  if (file.exists(dirSampName)) {
+    print(paste(dirSampName, "exists.  Removing..."))
+    unlink(dirSampName, recursive = TRUE)
+    print(paste(dirSampName, "Removed"))
+  } else {
+    print(paste(dirSampName, "does not exist. Creating new directory..."))
+    system( paste("mkdir","-p", dirSampName), intern=TRUE)
+  }
+  
   writeSamples(sampTexts,dirSampName)
   
   rm(texts,sampTexts)
@@ -19,4 +27,3 @@ if (SAMPLEDATA){
   nTexts <- sapply(lapply(dCorpus,content),length)
   save.image()
 }
-

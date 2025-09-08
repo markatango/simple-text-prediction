@@ -15,16 +15,18 @@ mostLikelyNWords <- function(N,stWd){
 
 
 predictor <- function(nds){
+  print(head(nds))
   function(text){
     candidates <- getCandidateNgrams(text,nds)
     if(!isempty(candidates)){
-      candidates <- candidates[order(candidates$pt,decreasing=TRUE),]
+      candidates <- candidates[order(candidates[["pt"]],decreasing=TRUE),]
+      
       n <- min(RPTLEN, length(candidates$suff))
       topOverAllList <- candidates$suff[1:n]
       topDocsList <- lapply(1:nDocs, function(d){
         include <- candidates[paste0("p",d)]>0
         ci <- candidates[include,]
-        ci$suff[order(ci[paste0("p",d)], decreasing=TRUE)]
+        ci$suff[order(ci[[paste0("p",d)]], decreasing=TRUE)]
       })
     }
     
@@ -45,7 +47,7 @@ stopExists("sNDS")
 #predictFromTextLarge <- predictor(NgramDocStats)
 predictFromTextSmall <- predictor(sNDS)
 
-predictFromTextd <- function(text){
+predictFromText <- function(text){
   if(!exists("sNDS")) load("shortNDS.RData")
   if(!exists("dNDS")) load("predictors.RData")
   dNDS[which(dNDS$pref==text)]
@@ -59,7 +61,7 @@ plotTop <- function(inCand){
   if(!isempty(inCand)){
     palette(rainbow(15))
     n <- min(15,dim(inCand)[1])
-    c <- inCand[order(inCand$pt,decreasing=TRUE),][1:n,]
+    c <- inCand[order(inCand[["pt"]],decreasing=TRUE),][1:n,] #MR
     
     # get the document names (round about way)
     cNames <- names(c)
@@ -70,7 +72,7 @@ plotTop <- function(inCand){
     docNames <- sapply(docs,function(d)fileList[d])
     
     c.m <- melt(c,id.vars=c("pref","suff"),measure.vars=paste0("p",1:nDocs))
-    c.m <- c.m[order(c.m$value),]
+    c.m <- c.m[order(c.m[["value"]]),]
     
     g <- ggplot(c.m,aes(x=suff,y=value,group=variable))
     g <- g + geom_bar(stat="identity",aes(fill=factor(variable)), color="black", width=0.3, position="dodge")
@@ -83,7 +85,8 @@ plotAll <- function(inCand){
   if(!isempty(inCand)){
     palette(rainbow(15))
     n <- min(15,dim(inCand)[1])
-    c <- inCand[order(inCand$pt,decreasing=TRUE),][1:n,]
+    # c <- inCand[order(inCand$pt,decreasing=TRUE),][1:n,] #MR
+    c <- inCand[order(inCand[["pt"]],decreasing=FALSE),][1:n,]
     g <- ggplot(c,aes(x=factor(suff,levels=as.character(suff),ordered=TRUE),y=pt))
     g <- g + geom_bar(stat="identity",fill="skyblue", color="black", width=0.3)
     g <- g + ggtitle("Top word predictions from all texts")

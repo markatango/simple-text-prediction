@@ -1,6 +1,7 @@
 .RData
+.Rdata
+fullimage.RData
 .Rhistory
-*.RData
 .Rproj
 *.Rproj
 .Rproj.user/
@@ -11,3 +12,4 @@ data/
 dcorpus.dc
 rSource/reshapeTest.R
 
+# temporary

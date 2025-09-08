@@ -25,7 +25,7 @@ cleanText <- function(text){
 #   repTextTest <- gsub(reRepText," \\1 ",repTextTest)
 #   gsub(reRepText," \\1 ",repTextTest)
   txt.c.1 <- gsub(reRepText," \\1 ", txt.c.1)
-  # expand contractions
+  # expand common contractions and contraction errors
   txt.c.1 <- gsub("'ll"," will",txt.c.1)
   txt.c.1 <- gsub("'d"," would",txt.c.1)
   txt.c.1 <- gsub("'ve"," have",txt.c.1)
@@ -37,6 +37,7 @@ cleanText <- function(text){
   txt.c.1 <- gsub("n't"," not",txt.c.1)
   txt.c.1 <- gsub("'re"," are",txt.c.1)
   txt.c.1 <- gsub("i'm"," i am",txt.c.1)
+  txt.c.1 <- gsub("youre"," you are",txt.c.1)
   txt.c.1 <- gsub("\\sn'( |[[:punct:]])"," and\\1",txt.c.1)
   if (DEBUGMODE) writeLines(txt.c.1, "txt.c.1.txt")
 

@@ -1,15 +1,11 @@
 
 # Davies, Mark. (2011) N-grams data from the Corpus of Contemporary American English (COCA). Downloaded from http://www.ngrams.info on April 7, 2015. 
-if(!ONSURFACE){
-  dirOrigName <- 'data/final/en_US'
-  dirCleanName <- 'data/final/en_US_clean'
-  dirSampName <- 'data/final/en_US_sample'
-  dirTempName <- 'data/final/en_US_temp'
-} else {
-  dirOrigName <- 'D:/Capstone-language-analysis/Coursera-SwiftKey/final/en_US'
-  dirCleanName <- 'D:/Capstone-language-analysis/Coursera-SwiftKey/final/en_US_clean'
-  dirSampName <- 'D:/Capstone-language-analysis/Coursera-SwiftKey/final/en_US_sample'
-  dirTempName <- 'D:/Capstone-language-analysis/Coursera-SwiftKey/final/en_US_temp'
+
+
+
+
+for (sub_dir in list(dirOrigName, dirCleanName, dirSampName, dirTempName)){
+  if (!file.exists(sub_dir)) dir.create(file.path("./", sub_dir))
 }
 
 readAndLower <- function(f,dirName){
@@ -43,8 +39,8 @@ if (STARTUP & !READDATA){
   fileList <- strsplit(fileNames, "\\s+")[[1]]
   
   texts <- lapply(fileList, readAndLower, dirOrigName)
+  nTexts <- sapply(texts,length)
   if (SAMPLESIZE < 1.0){
-      nTexts <- sapply(texts,length)
       set.seed(1340)
       texts <- lapply(1:length(texts),function(i){
         texts[[i]][sample(1:nTexts[i], SAMPLESIZE * nTexts[i])]
@@ -53,18 +49,31 @@ if (STARTUP & !READDATA){
 
   # delay cleaning until sample is selected (cleaning is slow)
   texts <- lapply(texts,cleanText)
-
-  removeFiles(dirCleanName)
+  
+  if (file.exists(dirCleanName)) {
+    print(paste(dirCleanName, "exists.  Removing..."))
+    unlink(dirCleanName, recursive = TRUE)
+    print(paste(dirCleanName, "Removed"))
+  } else {
+    print(paste(dirCleanName, "does not exist. Creating new directory..."))
+    system( paste("mkdir","-p", dirCleanName), intern=TRUE)
+  }
+  
   writeSamples(texts,dirCleanName)
 }
 
 if (STARTUP & READDATA){
   # If clean data is already present just read in here to sample
-  fileNames <- system(paste("dir ", dirCleanName),intern=TRUE)
-  fileList <- strsplit(fileNames, "\\s+")[[1]]
-  fullFileNames <- paste(dirCleanName,"/",fileList,sep="")
-  
-  texts <- lapply(fullFileNames, readLines)
+  if (file.exists(dirCleanName)) {
+    fileNames <- system(paste("dir ", dirCleanName),intern=TRUE)
+    fileList <- strsplit(fileNames, "\\s+")[[1]]
+    fullFileNames <- paste(dirCleanName,"/",fileList,sep="")
+    
+    texts <- lapply(fullFileNames, readLines)
+  } else {
+    print(paste(dirCleanName, "does not exist."))
+    print("Go back and set params to read dataset and create clean data")
+  }
 }
 
 stopExists("texts")
@@ -73,6 +82,8 @@ stopExists("fullFileNames")
 
 nTexts <- sapply(texts,function(t)length(t))
 nDocs <- length(nTexts)
+
+
 save.image()
 
 

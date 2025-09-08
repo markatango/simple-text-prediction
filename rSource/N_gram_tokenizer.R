@@ -51,12 +51,14 @@ mainTokenizer <- lapply(1:NMAX,function(i) ngram_tokenizer(i))
 
 NGramify <- function(tokens){
   tab <- table(tokens) 
-  u <- tab < FILTERTHRESHOLD
+  u <- tab < FILTERTHRESHOLD # select terms that appear more often than FILTERTHRESHOLD
+  # print(paste("u",u))
   if (length(u)>0){
     tok <- names(tab[!u])
+    # print(paste("tok", tok))
     data.frame(tokens=tok, count=tab[!u], stringsAsFactors=FALSE) 
   } else { data.frame(tokens=c(" "," "),count=0) }
-  
+  # print(head(tab))
 }
 
 getTokens <- function(i,t){

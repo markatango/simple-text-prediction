@@ -39,11 +39,12 @@ stopExists("nDocs")
 # This method manages memory during tokenization to handle the most data
 # one document is tokenized at one 'n' level each pass.
 # intermediate data is removed
+
 sNDS <- data.frame()
 for (i in 2:NMAX) {
    for (t in 1:nDocs) {
      ng <- getTokens(i,t)
-     ng <- ng[which(ng$count>FILTERTHRESHOLD),]
+     ng <- ng[which(ng$count.Freq>FILTERTHRESHOLD),]  # was ng <- ng[which(ng$count>FILTERTHRESHOLD),]
      ng$pref <- exPrefix(ng$tokens)
      ng$suff <- exSuffix(ng$tokens)
      ng <- ng[,-which(names(ng)=="tokens")]
@@ -54,7 +55,8 @@ for (i in 2:NMAX) {
 }
 
 # reshape and add totals
-sNDS <-melt(sNDS,id=c("pref","suff","N","doc"),measure="count")
+# was sNDS <-melt(sNDS,id=c("pref","suff","N","doc"),measure="count")
+sNDS <-melt(sNDS,id=c("pref","suff","N","doc"),measure="count.Freq")
 sNDS <- dcast(sNDS,pref+suff+N~doc,sum)
 sNDS$total <- rowSums(sNDS[,c(as.character(1:nDocs))], na.rm=TRUE)
 

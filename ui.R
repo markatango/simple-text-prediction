@@ -19,7 +19,7 @@ shinyUI(
         ),
   		  fluidRow(
           h5("For more information about this project..."),
-  		    column(11,a(href="http://rpubs.com/datadancer/simpleTextPredictor",h4("Read me"))
+  		    column(11,a(href="http://data-dancer.com/langmodeldoc",target="_blank",h4("Read me"))
   		    )
   		  )
       ),
