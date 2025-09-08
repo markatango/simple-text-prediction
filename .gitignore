@@ -11,5 +11,5 @@ data/
 .RDataTmp
 dcorpus.dc
 rSource/reshapeTest.R
-
+shortNDS.RData
 # temporary
