@@ -5,7 +5,7 @@ date: "Saturday, March 28, 2015"
 output: html_document
 ---
 ### Scope
-This document presents the current status of the text prediction project. Some basic statistics and observations about the source documents are included, as well as some analysis of N-gram tokenization, and methods for handling certain language constructs such as money, dates, and URLs. The prediction method is described, and operating instructions are given for the application hosted [_here_](http://data-dancer.com/langModel).
+This document presents the current status of the text prediction project. Some basic statistics and observations about the source documents are included, as well as some analysis of N-gram tokenization, and methods for handling certain language constructs such as money, dates, and URLs. The prediction method is described, and operating instructions are given for the application hosted [_here_](http://data-dancer.com/simple-text-prediction).
 
 ### Source documents
 This project uses the english source documents found at: [Capstone Dataset](https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip). 
@@ -264,9 +264,9 @@ Figure 3: Frequency distribution of 1-grams
 Figure 4: Application screen shot after start-up
 
 
-[1]: ..\figs\Number_of_N_grams_vs_N.png "Figure 1: The number of n-grams as a function of n is much lower for 3-grams and up compared with the O(k^n^), where k is the number of 1-grams"
-[2]: ..\figs\Distribution_of_N-gram_counts.png "Figure 2: Frequency distribution of n-grams"
-[3]: ..\figs\Distribution_of_uni-gram_counts.png "Figure 3: Frequency distribution of 1-grams"
-[4]: ..\figs\app_screen_shot.png "Figure 4: Application screen shot after start-up" 
+[1]: ../figs/Number_of_N_grams_vs_N.png "Figure 1: The number of n-grams as a function of n is much lower for 3-grams and up compared with the O(k^n^), where k is the number of 1-grams"
+[2]: ../figs/Distribution_of_N-gram_counts.png "Figure 2: Frequency distribution of n-grams"
+[3]: ../figs/Distribution_of_uni-gram_counts.png "Figure 3: Frequency distribution of 1-grams"
+[4]: ../figs/app_screen_shot.png "Figure 4: Application screen shot after start-up" 
 
 
