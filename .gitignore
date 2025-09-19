@@ -9,6 +9,7 @@ docs/
 data/
 .Rproj.user
 .RDataTmp
+.Renviron
 dcorpus.dc
 rSource/reshapeTest.R
 shortNDS.RData
