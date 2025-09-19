@@ -2,7 +2,10 @@ library(shiny)
 
 # Define UI for application that draws a histogram
 shinyUI(
-  fluidPage(
+  fluidPage(    
+    tags$head(
+    tags$link(rel = "shortcut icon", href = "/simple-text-prediction/favicon.ico")
+  ),
     titlePanel("Text prediction"),
     sidebarLayout(
       sidebarPanel(
@@ -19,7 +22,7 @@ shinyUI(
         ),
   		  fluidRow(
           h5("For more information about this project..."),
-  		    column(11,a(href="http://data-dancer.com/langmodeldoc",target="_blank",h4("Read me"))
+  		    column(11,a(href="https://data-dancer.com/simple-text-prediction-doc",target="_blank",h4("Read me"))
   		    )
   		  )
       ),
