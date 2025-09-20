@@ -213,7 +213,7 @@ If no comparison occurs, then the first word in the comparison string is dropped
 
 #### Operation
 
-1. Navigate to [http://data-dancer.com/langModel](http://data-dancer.com/langModel)
+1. Navigate to [https://data-dancer.com/simple-text-prediction](http://data-dancer.com/simple-text-prediction)
 2. Wait a few moments for the server to initialize. You will see a bargraph appear, showing the conditional probabilities for first up to 10 words predicted by the prefix that appears in the horizontal axis label.  A screen shot at this stage is shown in the figures, below.
 3. Enter an english phrase in the text input box. 
 4. The most likely word to follow the input phrase appears next to the text input box. This word is the most likely word, taking all documents into consideration.
