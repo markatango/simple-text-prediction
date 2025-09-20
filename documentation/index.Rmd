@@ -17,7 +17,7 @@ knit        : slidify::knit2slides
 #### April 26, 2015
 #### *Overview*
 
-This project illustrates a 'next word' text prediction technique based on a simple statistical model of language. In this  model, the predicted 'next word' is the word with the highest probability of occurrence conditioned on the words that proceed it. Three source texts were used for estimating the conditional probabilities and for estimating the performance of the prediction algorithm. The same sources were used to build the final demonstration project, implemented in publicly accessible webpage at [data-dancer.com/langModel](http://data-dancer.com/langModel).
+This project illustrates a 'next word' text prediction technique based on a simple statistical model of language. In this  model, the predicted 'next word' is the word with the highest probability of occurrence conditioned on the words that proceed it. Three source texts were used for estimating the conditional probabilities and for estimating the performance of the prediction algorithm. The same sources were used to build the final demonstration project, implemented in publicly accessible webpage at [data-dancer.com/simple-text-prediction](https://data-dancer.com/simple-text-prediction).
 
 ---
 
@@ -51,7 +51,7 @@ Prediction works as follows:
 
 #### *How to use the product*
 
-1. Using a web browser, navigate to [data-dancer.com/langModel](http://data-dancer.com/langModel)
+1. Using a web browser, navigate to [data-dancer.com/simple-text-prediction](https://data-dancer.com/simple-text-prediction)
 2. Enter a word or phrase in the text input box in the left side panel.
 3. After a few moments, the most likely next word is shown to the right of the text input box. In addition, a set of words will appear for each of the source documents along with a bargraph showing the estimated conditional probability for each of the predicted words.  The label on the horizontal axis shows the final prefix that was used in the prediction.
 
